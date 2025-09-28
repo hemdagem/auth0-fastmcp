@@ -1,3 +1,4 @@
 fastmcp
 uvicorn
 dotenv
+httpx
