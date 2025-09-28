@@ -1,0 +1,8 @@
+{
+	"servers": {
+		"auth0-fastmcp": {
+			"url": "https://localhost:8080/mcp",
+			"type": "http"
+		}
+	}
+}
