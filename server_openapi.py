@@ -60,5 +60,12 @@ mcp = FastMCP.from_openapi(openapi_spec=openapi_spec, auth=auth, client=client)
 if __name__ == "__main__":
     # Note: Use uvicorn to run a production-ready async server
     # Running locally on 127.0.0.1:8000 for development purposes
+    cert_file = os.path.join(os.path.dirname(__file__), "cert.pem")
+    key_file = os.path.join(os.path.dirname(__file__), "key.pem")
     app = mcp.http_app(transport="http", path="/mcp") 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(
+        app, 
+        host="0.0.0.0", 
+        port=8000, 
+        ssl_certfile=cert_file,
+        ssl_keyfile=key_file)

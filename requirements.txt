@@ -1,4 +1,4 @@
-fastmcp
-uvicorn
-dotenv
-httpx
+fastmcp==2.12.4
+uvicorn==0.37.0
+dotenv==0.9.9
+httpx==0.28.1
