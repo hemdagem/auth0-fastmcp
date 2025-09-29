@@ -9,8 +9,8 @@ load_dotenv()
 
 # --- Configuration ---
 # You must change these to your actual values
-UPSTREAM_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID", "")
-UPSTREAM_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET", "")
+AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID", "")
+AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET", "")
 AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN", "")
 SERVER_BASE_URL = os.environ.get("SERVER_BASE_URL", "")
 
@@ -21,8 +21,8 @@ auth = OAuthProxy(
     upstream_token_endpoint=f"https://{AUTH0_DOMAIN}/oauth/token",
     
     # Your Registered Credentials
-    upstream_client_id=UPSTREAM_CLIENT_ID,
-    upstream_client_secret=UPSTREAM_CLIENT_SECRET,
+    upstream_client_id=AUTH0_CLIENT_ID,
+    upstream_client_secret=AUTH0_CLIENT_SECRET,
 
     # Auth0 requires 'audience' for token requests (OIDC/JWT)
     extra_authorize_params={
