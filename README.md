@@ -1,8 +1,8 @@
 # auth0-fastmcp
 
 This repository helps you implement and test the Auth0 interactive login flow with a FastMCP MCP Server. It provides example FastMCP servers and configuration to enable secure authentication and API access using Auth0.
-	- `server.py`: Main API server
-	- `server_openapi.py`: OpenAPI documentation server
+- `server.py`: Main API server
+- `server_openapi.py`: OpenAPI documentation server
 
 ## Prerequisites
 - Python 3.13 (recommended to use a virtual environment)
