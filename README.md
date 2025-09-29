@@ -50,8 +50,7 @@ pip install -r requirements.txt
 python server.py
 ```
 
-- The API server will start. Default port and host are defined in the script (usually `localhost:8000`).
-- Check the script for custom port or host settings.
+- The API server will start at `https://localhost:8000`
 
 ### Run `server_openapi.py`
 ```bash
@@ -59,7 +58,7 @@ python server_openapi.py
 ```
 
 - This will start the OpenAPI documentation server.
-- Access the OpenAPI docs at the URL printed in the terminal (usually `http://localhost:8000/docs`).
+- The API server will start at `https://localhost:8000`
 
 
 ## Additional Notes
