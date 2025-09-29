@@ -25,13 +25,20 @@ git clone https://github.com/hemdagem/auth0-fastmcp.git
 cd auth0-fastmcp
 ```
 
-### 2. Create and Activate Virtual Environment
+### 2. Create .env file
+```bash
+cp .env.example .env
+```
+Edit `.env` with your credentials and settings as needed.
+Refer to `.env.example` and the code for required variables.
+
+### 3. Create and Activate Virtual Environment
 ```bash
 python3 -m venv env
 source env/bin/activate
 ```
 
-### 3. Install Dependencies
+### 4. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
@@ -54,20 +61,8 @@ python server_openapi.py
 - This will start the OpenAPI documentation server.
 - Access the OpenAPI docs at the URL printed in the terminal (usually `http://localhost:8000/docs`).
 
-## Environment Variables
-If your app requires environment variables (e.g., Auth0 credentials), create a `.env` file in the project root. Example:
-An example file named `.env.example` is provided in the project root. Copy it to `.env` and fill in your values:
-```bash
-cp .env.example .env
-```
-Edit `.env` with your credentials and settings as needed.
-Refer to `.env.example` and the code for required variables.
-
-## Troubleshooting
 
 ## Additional Notes
-
-## macOS: Install Certificate
 
 ---
 Feel free to contribute or open issues for bugs and feature requests.
