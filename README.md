@@ -41,7 +41,7 @@ pip install -r requirements.txt
 python server.py
 ```
 
-- The API server will start at `https://localhost:8000`
+- The API server will start at `http://localhost:8000`
 
 ### Run `server_openapi.py`
 ```bash
@@ -49,7 +49,7 @@ python server_openapi.py
 ```
 
 - This will start the OpenAPI documentation server.
-- The API server will start at `https://localhost:8000`
+- The API server will start at `http://localhost:8000`
 
 
 ## Additional Notes
