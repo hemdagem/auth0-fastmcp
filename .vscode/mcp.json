@@ -1,6 +1,6 @@
 {
 	"servers": {
-		"auth0-fastmcpv2": {
+		"auth0-fastmcp": {
 			"url": "http://localhost:8000/mcp",
 			"type": "http"
 		}

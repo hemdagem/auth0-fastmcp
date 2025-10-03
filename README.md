@@ -23,6 +23,8 @@ cp .env.example .env
 Edit `.env` with your credentials and settings as needed.
 Refer to `.env.example` and the code for required variables.
 
+You can configure your Auth0 setup here: https://auth0.com/docs/get-started/auth0-overview/create-applications/regular-web-apps
+
 ### 3. Create and Activate Virtual Environment
 ```bash
 python3 -m venv env
