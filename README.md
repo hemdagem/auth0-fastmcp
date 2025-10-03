@@ -7,15 +7,6 @@ This repository helps you implement and test the Auth0 interactive login flow wi
 ## Prerequisites
 - [Python 3.13](https://www.python.org/downloads/)
 
-### macOS SSL Certificate (Required)
-If you are running this project on macOS, you must install the development SSL certificate before running the server. This is required for browsers and VS Code to trust the MCP server for secure connections.
-
-Run:
-```sh
-./install-cert.sh
-```
-
-This step is only needed for macOS users. Other operating systems may require different certificate installation steps.
 
 ## Setup Instructions
 

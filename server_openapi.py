@@ -6,7 +6,12 @@ import uvicorn
 import httpx
 from typing import Literal
 from dotenv import load_dotenv
+import logging
 load_dotenv()
+
+# Configure basic logging for debug purposes
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 # --- Configuration ---
 # You must change these to your actual values
@@ -46,9 +51,30 @@ auth = OAuthProxy(
 # --- MCP Server Definition ---
 # mcp = FastMCP(name="Auth0 FastMCP Server", auth=auth)
 
+# Create HTTP client for OpenAPI backend
 client = httpx.AsyncClient(base_url=OPEN_API_BASE_URL)
-openapi_spec = httpx.get(OPEN_API_SPEC_URL).json()
+logger.debug("Created httpx.AsyncClient with base_url=%s", OPEN_API_BASE_URL)
+
+# Fetch the OpenAPI spec (synchronous helper)
+try:
+    logger.debug("Fetching OpenAPI spec from URL=%s", OPEN_API_SPEC_URL)
+    resp = httpx.get(OPEN_API_SPEC_URL)
+    resp.raise_for_status()
+    openapi_spec = resp.json()
+    # Log a small summary instead of the full spec to avoid huge logs
+    if isinstance(openapi_spec, dict):
+        paths = openapi_spec.get("paths") or {}
+        logger.debug("OpenAPI spec fetched successfully; keys=%s, paths_count=%d", 
+                     list(openapi_spec.keys()), len(paths))
+    else:
+        logger.debug("OpenAPI spec fetched successfully (non-dict type: %s)", type(openapi_spec))
+except Exception as e:
+    logger.exception("Failed to fetch OpenAPI spec from %s: %s", OPEN_API_SPEC_URL, e)
+    raise
+
+# Build the MCP from the OpenAPI spec
 mcp = FastMCP.from_openapi(openapi_spec=openapi_spec, auth=auth, client=client)
+logger.debug("FastMCP created from OpenAPI spec: mcp=%s", getattr(mcp, "name", repr(mcp)))
 
 
 # @mcp.tool
@@ -60,12 +86,9 @@ mcp = FastMCP.from_openapi(openapi_spec=openapi_spec, auth=auth, client=client)
 if __name__ == "__main__":
     # Note: Use uvicorn to run a production-ready async server
     # Running locally on 127.0.0.1:8000 for development purposes
-    cert_file = os.path.join(os.path.dirname(__file__), "cert.pem")
-    key_file = os.path.join(os.path.dirname(__file__), "key.pem")
     app = mcp.http_app(transport="http", path="/mcp") 
     uvicorn.run(
         app, 
         host="0.0.0.0", 
-        port=8000, 
-        ssl_certfile=cert_file,
-        ssl_keyfile=key_file)
+        port=8000
+        )
